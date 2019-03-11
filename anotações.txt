@@ -1,0 +1,4 @@
+M -> Model - Modelagem DB
+V -> View - HTML/CSS/JS...
+C -> Controller - Regra de negócios
+
