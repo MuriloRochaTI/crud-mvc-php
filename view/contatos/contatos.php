@@ -6,7 +6,7 @@
 
     	<div id="cadastro">
         	
-            <form name="frmcontatos" method="post" action="router.php?controller=contatos&modo=inserir">
+            <form name="frmcontatos" method="POST" autocomplete="off" action="router.php?controller=contatos&modo=inserir">
             
                 <table id="tblcadastro">
                   <tr>
@@ -53,10 +53,10 @@
                 <td class="titulo_tabela" colspan="5">Consulta de Contatos</td>
               </tr>
               <tr class="tblcadastro_td">
-                <td>Nome</td>
-                <td>Telefone</td>
-                <td>Celular</td>
-                <td>Email</td>
+                <td>Nome:</td>
+                <td>Email:</td>
+                <td>Telefone:</td>
+                <td>Data de Nascimento:</td>
                 <td>Opções</td>
               </tr>
               <tr class="tblconsulta_dados">
@@ -67,17 +67,27 @@
                 <td>&nbsp;</td>
               </tr>
 
+            <!-- consultas -->
             <?php 
-               
-                
-               
+              //Import da controle de contatos
+              require_once('controller/controllerContato.php');
+              //Instância da controller contatos
+              $listarContatos = new ControllerContato();
+              //Chamada do método de listar contatos
+              $rsListarContatos = $listarContatos->listarContato();
+
+              $cont = 0;
+
+              while($cont < count($rsListarContatos)){
             ?>    
 
                       <tr class="tblconsulta_dados">
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td><?php echo($rsListarContatos[$cont]->getNome()); ?></td>
+                        <td><?php echo($rsListarContatos[$cont]->getEmail()); ?></td>
+                        <td><?php echo($rsListarContatos[$cont]->getTelefone()); ?></td>
+                        <td><?php echo($rsListarContatos[$cont]->getDataNascimento()); ?></td>
+                        <!-- Data e Obs -->
+                        
                           <td>
                             <a href="cadastro.php?modo=buscar&id=">
                                 <img src="icones/modify16.png">
@@ -90,8 +100,8 @@
                         </td>
                       </tr>
                 <?php 
-              
-                
+                  $cont++;
+                  }
                 ?>
             </table>
         </div>

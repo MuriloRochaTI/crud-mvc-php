@@ -65,6 +65,8 @@
         }
 
         public function getCelular(){
+
+            
             return $this->celular;
         }
 
@@ -73,11 +75,13 @@
         }
 
         public function getDataNascimento(){
-            return $this->dataNascimento;
+            return date("d/m/Y", strtotime( $this->dataNascimento));
         }
 
         public function setDataNascimento($dataNascimento){
-            $this->dataNascimento = $dataNascimento;
+
+            //Tratamento da data para enviar para o banco
+            $this->dataNascimento = date("Y-m-d", strtotime($dataNascimento));
         }
 
         public function getObs(){

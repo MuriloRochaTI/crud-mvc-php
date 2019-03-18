@@ -1,14 +1,13 @@
 <?php
 
-
     /*
     Projeto: Exercício de MVC em tela de contatos
-    Autor: Murilo Olivira
+    Autor: Murilo Oliveira
     Data: 11/03/2019
 
     Data Modificação: 12/03/2019 
-    Contéudo Modificado:
-    Autor da Modificação: 
+    Contéudo Modificado: 15/03/2019
+    Autor da Modificação: Murilo Oliveira
 
     Objetivo da Classe: Rotas
 
@@ -28,6 +27,11 @@
             case 'CONTATOS':
                 switch ($modo){
                     case 'INSERIR':
+                        require_once('controller/controllerContato.php'); 
+                        $controllerContato = new controllerContato();//Instância
+                        $controllerContato->inserirContato(); //Chamando o método de inserir um novo contato
+                        
+                        break;
 
                     case 'ATUALIZAR':
 
@@ -36,6 +40,7 @@
                     case 'BUSCAR':
 
                 }
+            break;
         }
 
     }else{

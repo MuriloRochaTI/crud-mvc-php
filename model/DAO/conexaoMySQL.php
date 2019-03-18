@@ -19,7 +19,7 @@
         private $user;
         private $password;
         private $database;
-
+        
         //Método construtor
         public function __construct(){
            $this->server = "localhost";
@@ -46,6 +46,8 @@
             
             //$conxexao = null;
             unset($conexao);
+            //mysqli_close($conexao);
+        
         }
 
     }
