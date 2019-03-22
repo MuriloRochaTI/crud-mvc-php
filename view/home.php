@@ -11,7 +11,7 @@
     
     <div id="principal">
         <div id="cabecalho">
-            <img src="img/bg.png" width="980" height="200">
+            <img src="view/img/bg.png" width="980" height="200">
         </div>
 
         <div id="content">

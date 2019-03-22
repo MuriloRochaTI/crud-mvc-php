@@ -25,19 +25,23 @@
         switch ($controller){
 
             case 'CONTATOS':
+                require_once('controller/controllerContato.php'); 
+                $controllerContato = new controllerContato();
                 switch ($modo){
-                    case 'INSERIR':
-                        require_once('controller/controllerContato.php'); 
-                        $controllerContato = new controllerContato();//Instância
-                        $controllerContato->inserirContato(); //Chamando o método de inserir um novo contato
-                        
+                    
+                    case 'INSERIR':     
+                        $controllerContato->inserirContato(); //Chamando o método de inserir um novo contato   
                         break;
-
                     case 'ATUALIZAR':
-
+                        $controllerContato->atualizarContato();
+                        break;
                     case 'EXCLUIR':
-
+                        $controllerContato->excluirContato();//Chamando o método de exclusão um novo contato   
+                        break;
                     case 'BUSCAR':
+                        $contato = $controllerContato->buscarContato();//Chamando o método de buscar um novo contato   
+                        require_once('index.php');
+                        break;
 
                 }
             break;

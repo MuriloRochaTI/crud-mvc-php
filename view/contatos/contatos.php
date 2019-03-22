@@ -1,12 +1,33 @@
 <?php
    
+    $nome = null;
+    $telefone = null;
+    $celular = null;
+    $email = null;
+    $dt_nasc = null;
+    $obs = null;
+
+   if(isset($contato)){
+      $id = $contato->getCodigo();
+      $nome = $contato->getNome();
+      $telefone = $contato->getTelefone();
+      $celular = $contato->getCelular();
+      $email = $contato->getEmail();
+      $dt_nasc = $contato->getDataNascimento();
+      $obs = $contato->getObs();
+
+      $action = "router.php?controller=contatos&modo=atualizar&id=".$id;
+
+   }else{
+      $action = "router.php?controller=contatos&modo=inserir";
+   }
     
 ?>
 
 
     	<div id="cadastro">
         	
-            <form name="frmcontatos" method="POST" autocomplete="off" action="router.php?controller=contatos&modo=inserir">
+            <form name="frmcontatos" method="POST" autocomplete="off" action="<?php echo($action) ?>">
             
                 <table id="tblcadastro">
                   <tr>
@@ -14,29 +35,29 @@
                   </tr>
                   <tr>
                     <td class="tblcadastro_td">Nome:</td>
-                    <td><input id="nome" value="" name="txtnome" type="text"  required placeholder="Nome"  /></td>
+                    <td><input id="nome" value="<?php echo($nome);?>" name="txtnome" type="text"  required placeholder="Nome"  /></td>
                   </tr>
                   <tr>
                     <td class="tblcadastro_td">Telefone:</td>
-                    <td><input id="telefone" name="txttelefone" type="tel" value=""  /></td>
+                    <td><input id="telefone" name="txttelefone" type="tel" value="<?php echo($telefone);?>"  /></td>
                   </tr>
                   <tr>
                     <td class="tblcadastro_td">Celular:</td>
-                    <td><input value="" name="txtcelular" type="tel" value="" placeholder="Ex:011 99999-9999" /></td>
+                    <td><input name="txtcelular" type="tel" value="<?php echo($celular);?>" placeholder="Ex:011 99999-9999" /></td>
                   </tr>
                   <tr>
                     <td class="tblcadastro_td">Email:</td>
-                    <td><input value="" name="txtemail" type="email" value="" /></td>
+                    <td><input name="txtemail" type="email" value="<?php echo($email);?>" /></td>
                   </tr>
-				  <tr>
+				          <tr>
                     <td class="tblcadastro_td">Data Nascimento:</td>
-                    <td><input value="" name="txtdatanasc" type="text" value="" /></td>
+                    <td><input name="txtdatanasc" type="text" value="<?php echo($dt_nasc);?>" /></td>
                   </tr>
                   
-				  <tr>
+				          <tr>
 				  
                     <td class="tblcadastro_td">Obs:</td>
-                    <td><textarea name="txtobs" cols="20" rows="5"></textarea></td>
+                    <td><textarea name="txtobs" cols="20" rows="5"><?php echo($obs);?></textarea></td>
                   </tr>
                   <tr>
                     <td><input name="btnsalvar" type="submit" value="Salvar" /></td>
@@ -89,13 +110,13 @@
                         <!-- Data e Obs -->
                         
                           <td>
-                            <a href="cadastro.php?modo=buscar&id=">
-                                <img src="icones/modify16.png">
+                           
+                          <a href="router.php?controller=contatos&modo=buscar&id=<?php echo($rsListarContatos[$cont]->getCodigo());?>">
+                                  <img src="view/img/bg.png" width="20" height="20">
                             </a>|
-                            
-                                <a href="cadastro.php?modo=excluir&id=">
-                                    <img src="icones/delete16.png">
-                                </a>|
+                            <a href="router.php?controller=contatos&modo=excluir&id=<?php echo($rsListarContatos[$cont]->getCodigo());?>">
+                                  <img src="view/img/bg.png" width="20" height="20"> 
+                            </a>
                         
                         </td>
                       </tr>
@@ -106,9 +127,7 @@
             </table>
         </div>
     </div>
-    
-    
-    
+     
 </div>
 
 </body>

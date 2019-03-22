@@ -75,13 +75,18 @@
         }
 
         public function getDataNascimento(){
-            return date("d/m/Y", strtotime( $this->dataNascimento));
+            return $this->dataNascimento;
         }
 
         public function setDataNascimento($dataNascimento){
 
-            //Tratamento da data para enviar para o banco
-            $this->dataNascimento = date("Y-m-d", strtotime($dataNascimento));
+            if(strpos($dataNascimento, "/")){
+                //Tratamento da data para enviar para o banco
+                $this->dataNascimento = date("Y-m-d", strtotime($dataNascimento));
+            }else if(strpos($dataNascimento, "-")){
+                $this->dataNascimento = date("d/m/Y", strtotime($dataNascimento));
+            }
+            
         }
 
         public function getObs(){
